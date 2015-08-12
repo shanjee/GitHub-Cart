@@ -24,11 +24,11 @@ namespace DemoProductCart.Web.Controllers
         //
         // GET: /Store/Browse?genre=Disco
 
-        public ActionResult Browse(string genre)
+        public ActionResult Browse(string category)
         {
             // Retrieve Genre and its Associated Albums from database
             var genreModel = storeDB.ProductCategorys.Include("Products")
-                .Single(g => g.Name == genre);
+                .Single(g => g.Name == category);
 
             return View(genreModel);
         }

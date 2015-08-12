@@ -2,6 +2,5 @@ F:\VS Online\MVC Cart\DemoProductCart.Web\ProductCart.Models\bin\Debug\ProductCa
 F:\VS Online\MVC Cart\DemoProductCart.Web\ProductCart.Models\bin\Debug\ProductCart.Models.pdb
 F:\VS Online\MVC Cart\DemoProductCart.Web\ProductCart.Models\bin\Debug\EntityFramework.dll
 F:\VS Online\MVC Cart\DemoProductCart.Web\ProductCart.Models\bin\Debug\EntityFramework.xml
-F:\VS Online\MVC Cart\DemoProductCart.Web\ProductCart.Models\obj\Debug\ProductCart.Models.csprojResolveAssemblyReference.cache
 F:\VS Online\MVC Cart\DemoProductCart.Web\ProductCart.Models\obj\Debug\ProductCart.Models.dll
 F:\VS Online\MVC Cart\DemoProductCart.Web\ProductCart.Models\obj\Debug\ProductCart.Models.pdb

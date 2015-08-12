@@ -5,14 +5,14 @@
 }
  
 <div class="genre">
-    <h3><em>@Model.Name</em> Albums</h3>
+    <h3><em>@Model.Name</em> Products</h3>
  
     <ul id="album-list">
         @foreach (var product in Model.Products)
         {
             <li>
                 <a href="@Url.Action("Details", new { id = product.ProductId })">
-                    <img alt="@product.Title" src="@product.Title" />
+                    @*<img alt="@product.Title" src="@product.Title" />*@
                     <span>@product.Title</span>
                 </a>
             </li>

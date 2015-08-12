@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ProductCart.Models.Models;
+using PagedList;
 
 namespace DemoProductCart.Web.Controllers
 {
@@ -15,9 +16,55 @@ namespace DemoProductCart.Web.Controllers
         private StoreEntities db = new StoreEntities();
 
         // GET: /ProductCategory/
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View(db.ProductCategorys.ToList());
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var products = db.ProductCategorys.ToList();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                products = products.Where(s => s.Name.Contains(searchString)
+                                       || s.Description.Contains(searchString)).ToList();
+            }
+
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    products = products.OrderByDescending(s => s.Name).ToList();
+                    break;
+                case "Date":
+                    products = products.OrderBy(s => s.Description).ToList();
+                    break;
+                case "date_desc":
+                    products = products.OrderByDescending(s => s.Name).ToList();
+                    break;
+                default:  // Name ascending 
+                    products = products.OrderBy(s => s.Description).ToList();
+                    break;
+            }
+
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(products.ToPagedList(pageNumber, pageSize));
+
+            //return View(db.ProductCategorys.ToList());
+
+            //return View(products);
         }
 
         // GET: /ProductCategory/Details/5

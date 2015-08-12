@@ -1,0 +1,11 @@
+﻿@model IEnumerable<ProductCart.Models.Models.ProductCategory>
+
+<ul id="categories">
+    @foreach (var catrgory in Model)
+    {
+        <li>@Html.ActionLink(catrgory.Name, 
+                "Browse", "Store",
+                 new { Genre = catrgory.Name }, null)
+        </li>
+    }
+</ul>

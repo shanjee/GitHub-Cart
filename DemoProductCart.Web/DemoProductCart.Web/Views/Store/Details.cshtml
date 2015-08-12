@@ -1,0 +1,30 @@
+﻿@model ProductCart.Models.Models.Product
+
+@{
+    ViewBag.Title = "Product - " + Model.Title;
+}
+
+<h2>@Model.Title</h2>
+
+<p>
+@*    <img alt="@Model.Title" src="@Model.AlbumArtUrl" />*@
+</p>
+
+<div id="album-details">
+    <p>
+        <em>ProductCategory:</em>
+        @Model.ProductCategory.Name
+    </p>
+    <p>
+        <em>Description:</em>
+        @Model.ProductCategory.Description
+    </p>
+    <p>
+        <em>Price:</em>
+        @String.Format("{0:F}", Model.Price)
+    </p>
+    <p class="button">
+        @Html.ActionLink("Add to cart", "AddToCart", 
+        "ShoppingCart", new { id = Model.ProductId }, "")
+    </p>
+</div>

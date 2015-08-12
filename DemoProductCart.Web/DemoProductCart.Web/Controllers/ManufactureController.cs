@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using ProductCart.Models.Models;
 using PagedList;
+using System.Diagnostics;
+using ProductCart.Models.ActionResults;
 
 namespace DemoProductCart.Web.Controllers
 {
@@ -162,6 +164,20 @@ namespace DemoProductCart.Web.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        /// <summary>
+        /// Download XML file
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DownloadFile()
+        {
+            var XMLData = db.Manufactures.ToList();                          
+
+            return new XmlResult<List<Manufacture>>()
+            {
+                Data = XMLData
+            };
         }
     }
 }

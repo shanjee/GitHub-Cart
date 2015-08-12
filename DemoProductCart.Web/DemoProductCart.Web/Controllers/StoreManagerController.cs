@@ -1,4 +1,5 @@
-﻿using ProductCart.Models.Models;
+﻿using ProductCart.Models.ActionResults;
+using ProductCart.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -105,6 +106,21 @@ namespace DemoProductCart.Web.Controllers
             db.Products.Remove(product);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+        /// <summary>
+        /// Download XML file
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DownloadFile()
+        {
+            var XMLData = db.ProductCategorys.ToList();
+
+            return new XmlResult<List<ProductCategory>>()
+            {
+                Data = XMLData
+            };
         }
 
         protected override void Dispose(bool disposing)

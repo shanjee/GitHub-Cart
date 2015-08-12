@@ -1,4 +1,5 @@
-﻿using ProductCart.Models.Models;
+﻿using ProductCart.Models.ActionResults;
+using ProductCart.Models.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +53,20 @@ namespace DemoProductCart.Web.Controllers
             var genres = storeDB.ProductCategorys.ToList();
 
             return PartialView(genres);
+        }
+
+        /// <summary>
+        /// Download XML file
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult DownloadFile()
+        {
+            var XMLData = storeDB.Products.ToList();
+
+            return new XmlResult<List<Product>>()
+            {
+                Data = XMLData
+            };
         }
 
     }
